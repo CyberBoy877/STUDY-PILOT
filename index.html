@@ -1,128 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StudyPilot - Class 10 Study Manager</title>
+<title>StudyPilot - Futuristic Study OS</title>
 
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#2563eb">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f172a">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===== GLOBAL ANIMATION BACKGROUND ===== */
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(-45deg, #0f172a, #1e293b, #0b1220, #111827);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    color: white;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* FLOAT ANIMATION */
+@keyframes float {
+    0% {transform: translateY(0px);}
+    50% {transform: translateY(-10px);}
+    100% {transform: translateY(0px);}
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 20px;
+    font-size: 22px;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* NAV */
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+}
+
+nav button {
+    background: rgba(255,255,255,0.08);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 10px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+nav button:hover {
+    transform: scale(1.1);
+    background: rgba(0,255,255,0.2);
+}
+
+/* CARDS */
+.card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px;
+    box-shadow: 0 0 20px rgba(0,255,255,0.1);
+    animation: float 4s ease-in-out infinite;
+    backdrop-filter: blur(12px);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(0,255,255,0.3);
+}
+
+/* INPUTS */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+/* BUTTONS */
+button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px cyan;
+}
+
+/* TIMER */
+#timerDisplay {
+    font-size: 40px;
+    text-align: center;
+    color: cyan;
+    margin: 20px 0;
+}
+
+/* VIDEO LINK */
+#videoLink {
+    display: inline-block;
+    margin-top: 10px;
+    color: cyan;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    header {
+        font-size: 18px;
+    }
+
+    .card {
+        margin: 10px;
+    }
+}
+</style>
+
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <h1>📚 StudyPilot</h1>
-        <p>Your Personal Class 10 Study Manager</p>
-    </header>
+<header>
+    🚀 StudyPilot - Futuristic Study OS
+</header>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <button onclick="showSection('dashboard')">Dashboard</button>
-        <button onclick="showSection('tasks')">Tasks</button>
-        <button onclick="showSection('notes')">Notes</button>
-        <button onclick="showSection('videos')">Videos</button>
-        <button onclick="showSection('timer')">Timer</button>
-    </nav>
+<nav>
+    <button onclick="showSection('dashboard')">Dashboard</button>
+    <button onclick="showSection('tasks')">Tasks</button>
+    <button onclick="showSection('notes')">Notes</button>
+    <button onclick="showSection('videos')">Videos</button>
+    <button onclick="showSection('timer')">Timer</button>
+</nav>
 
-    <!-- MAIN CONTENT -->
-    <main>
+<main>
 
-        <!-- DASHBOARD -->
-        <section id="dashboard" class="section active">
+<!-- DASHBOARD -->
+<section id="dashboard" class="section active">
 
-            <div class="card">
-                <h2>🎯 Daily Goal</h2>
-                <input type="text" id="goalInput" placeholder="Enter your goal">
-                <button onclick="saveGoal()">Save Goal</button>
-                <p id="goalDisplay">No goal set</p>
-            </div>
+    <div class="card">
+        <h2>🎯 Goal</h2>
+        <input id="goalInput" placeholder="Enter goal">
+        <button onclick="saveGoal()">Save</button>
+        <p id="goalDisplay"></p>
+    </div>
 
-            <div class="card">
-                <h2>📅 Exam Countdown</h2>
-                <input type="date" id="examDate">
-                <button onclick="saveExamDate()">Save Date</button>
-                <p id="countdown"></p>
-            </div>
+    <div class="card">
+        <h2>📅 Exam</h2>
+        <input type="date" id="examDate">
+        <button onclick="saveExamDate()">Save</button>
+        <p id="countdown"></p>
+    </div>
 
-            <div class="card">
-                <h2>🔥 Study Streak</h2>
-                <p id="streak">0 Days</p>
-            </div>
+    <div class="card">
+        <h2>🔥 Streak</h2>
+        <h1 id="streak">0</h1>
+    </div>
 
-        </section>
+</section>
 
-        <!-- TASKS -->
-        <section id="tasks" class="section">
+<!-- TASKS -->
+<section id="tasks" class="section">
+    <div class="card">
+        <h2>📝 Tasks</h2>
+        <input id="taskInput">
+        <button onclick="addTask()">Add</button>
+        <ul id="taskList"></ul>
+    </div>
+</section>
 
-            <div class="card">
-                <h2>📝 Tasks</h2>
-                <input type="text" id="taskInput" placeholder="Add a task">
-                <button onclick="addTask()">Add Task</button>
+<!-- NOTES -->
+<section id="notes" class="section">
+    <div class="card">
+        <h2>📒 Notes</h2>
+        <textarea id="notesArea" rows="8"></textarea>
+        <button onclick="saveNotes()">Save</button>
+    </div>
+</section>
 
-                <ul id="taskList"></ul>
-            </div>
+<!-- VIDEOS -->
+<section id="videos" class="section">
+    <div class="card">
+        <h2>🎥 Daily Video</h2>
+        <h3 id="videoTitle">Loading...</h3>
+        <button onclick="loadVideo()">Refresh</button>
+        <br>
+        <a id="videoLink" target="_blank">Watch Now ▶</a>
+    </div>
+</section>
 
-        </section>
+<!-- TIMER -->
+<section id="timer" class="section">
+    <div class="card">
+        <h2>⏳ Pomodoro</h2>
+        <div id="timerDisplay">25:00</div>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="resetTimer()">Reset</button>
+    </div>
+</section>
 
-        <!-- NOTES -->
-        <section id="notes" class="section">
+</main>
 
-            <div class="card">
-                <h2>📒 Notes</h2>
-                <textarea id="notesArea" rows="10" placeholder="Write your notes..."></textarea>
-                <button onclick="saveNotes()">Save Notes</button>
-            </div>
-
-        </section>
-
-        <!-- VIDEOS -->
-        <section id="videos" class="section">
-
-            <div class="card">
-                <h2>🎥 Daily One-Shot Video</h2>
-
-                <h3 id="videoTitle">Loading...</h3>
-
-                <button onclick="loadVideo()">Refresh Video</button>
-                <br><br>
-
-                <a id="videoLink" target="_blank">
-                    ▶ Watch Video
-                </a>
-            </div>
-
-        </section>
-
-        <!-- TIMER -->
-        <section id="timer" class="section">
-
-            <div class="card">
-                <h2>⏳ Pomodoro Timer</h2>
-
-                <div id="timerDisplay">25:00</div>
-
-                <button onclick="startTimer()">Start</button>
-                <button onclick="resetTimer()">Reset</button>
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>Made by CyberBoy877 🚀</p>
-    </footer>
-
-    <!-- SCRIPT -->
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
