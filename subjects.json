@@ -1,1 +1,130 @@
+{
+  "Mathematics": [
+    "Real Numbers",
+    "Polynomials",
+    "Pair of Linear Equations in Two Variables",
+    "Quadratic Equations",
+    "Arithmetic Progressions",
+    "Triangles",
+    "Coordinate Geometry",
+    "Introduction to Trigonometry",
+    "Applications of Trigonometry",
+    "Circles",
+    "Areas Related to Circles",
+    "Surface Areas and Volumes",
+    "Statistics",
+    "Probability"
+  ],
 
+  "Science": {
+    "Physics": [
+      "Light – Reflection and Refraction",
+      "The Human Eye and the Colourful World",
+      "Electricity",
+      "Magnetic Effects of Electric Current",
+      "Sources of Energy"
+    ],
+
+    "Chemistry": [
+      "Chemical Reactions and Equations",
+      "Acids, Bases and Salts",
+      "Metals and Non-metals",
+      "Carbon and Its Compounds",
+      "Periodic Classification of Elements"
+    ],
+
+    "Biology": [
+      "Life Processes",
+      "Control and Coordination",
+      "How do Organisms Reproduce?",
+      "Heredity and Evolution",
+      "Our Environment",
+      "Sustainable Management of Natural Resources"
+    ]
+  },
+
+  "Social Science": {
+    "History": [
+      "The Rise of Nationalism in Europe",
+      "Nationalism in India",
+      "The Making of a Global World",
+      "The Age of Industrialisation",
+      "Print Culture and the Modern World"
+    ],
+
+    "Geography": [
+      "Resources and Development",
+      "Forest and Wildlife Resources",
+      "Water Resources",
+      "Agriculture",
+      "Minerals and Energy Resources",
+      "Manufacturing Industries",
+      "Lifelines of National Economy"
+    ],
+
+    "Political Science": [
+      "Power Sharing",
+      "Federalism",
+      "Gender, Religion and Caste",
+      "Political Parties",
+      "Outcomes of Democracy"
+    ],
+
+    "Economics": [
+      "Development",
+      "Sectors of the Indian Economy",
+      "Money and Credit",
+      "Globalisation and the Indian Economy",
+      "Consumer Rights"
+    ]
+  },
+
+  "English": {
+    "First Flight": [
+      "A Letter to God",
+      "Nelson Mandela: Long Walk to Freedom",
+      "Two Stories About Flying",
+      "From the Diary of Anne Frank",
+      "The Hundred Dresses I & II",
+      "Glimpses of India",
+      "Mijbil the Otter",
+      "Madam Rides the Bus",
+      "The Sermon at Benares",
+      "The Proposal"
+    ],
+
+    "Footprints Without Feet": [
+      "A Triumph of Surgery",
+      "The Thief’s Story",
+      "The Midnight Visitor",
+      "A Question of Trust",
+      "Footprints Without Feet",
+      "The Making of a Scientist",
+      "The Necklace",
+      "Bholi",
+      "The Book That Saved the Earth"
+    ]
+  },
+
+  "Hindi": {
+    "Kshitij": [
+      "सूरदास",
+      "राम-लक्ष्मण-परशुराम संवाद",
+      "साना-साना हाथ जोड़ि",
+      "नेताजी का चश्मा",
+      "बालगोबिन भगत",
+      "लखनवी अंदाज़",
+      "एक कहानी यह भी",
+      "स्त्री शिक्षा के विरोधी कुतर्कों का खंडन",
+      "नौबतखाने में इबादत",
+      "संस्कृति"
+    ],
+
+    "Kritika": [
+      "माता का आँचल",
+      "जॉर्ज पंचम की नाक",
+      "एही ठैयाँ झुलनी हेरानी हो रामा",
+      "मैं क्यों लिखता हूँ"
+    ]
+  }
+}
