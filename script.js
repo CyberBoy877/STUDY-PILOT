@@ -1,366 +1,222 @@
 /* ==================================
-   StudyPilot - Main JavaScript
+   StudyPilot - Final Script (Upgraded)
    ================================== */
 
 // ------------------------------
-// Navigation
+// NAVIGATION
 // ------------------------------
 
 function showSection(sectionId) {
-
-    const sections =
-        document.querySelectorAll(".section");
-
-    sections.forEach(section => {
-        section.classList.remove("active");
+    document.querySelectorAll(".section").forEach(sec => {
+        sec.classList.remove("active");
     });
 
-    document
-        .getElementById(sectionId)
-        .classList.add("active");
+    document.getElementById(sectionId).classList.add("active");
 }
 
 // ------------------------------
-// Daily Goal
+// DAILY GOAL
 // ------------------------------
 
 function saveGoal() {
-
-    const goal =
-        document.getElementById("goalInput").value;
-
+    const goal = document.getElementById("goalInput").value;
     localStorage.setItem("goal", goal);
-
     loadGoal();
 }
 
 function loadGoal() {
-
-    const goal =
-        localStorage.getItem("goal");
-
-    document.getElementById("goalDisplay")
-        .textContent =
-        goal || "No goal set yet.";
+    document.getElementById("goalDisplay").innerText =
+        localStorage.getItem("goal") || "No goal set";
 }
 
 // ------------------------------
-// Tasks
+// TASK SYSTEM
 // ------------------------------
 
 function addTask() {
-
-    const input =
-        document.getElementById("taskInput");
-
-    const task =
-        input.value.trim();
+    const input = document.getElementById("taskInput");
+    const task = input.value.trim();
 
     if (!task) return;
 
-    let tasks =
-        JSON.parse(
-            localStorage.getItem("tasks")
-        ) || [];
-
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     tasks.push(task);
 
-    localStorage.setItem(
-        "tasks",
-        JSON.stringify(tasks)
-    );
-
+    localStorage.setItem("tasks", JSON.stringify(tasks));
     input.value = "";
 
     loadTasks();
 }
 
 function deleteTask(index) {
-
-    let tasks =
-        JSON.parse(
-            localStorage.getItem("tasks")
-        ) || [];
-
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     tasks.splice(index, 1);
 
-    localStorage.setItem(
-        "tasks",
-        JSON.stringify(tasks)
-    );
-
+    localStorage.setItem("tasks", JSON.stringify(tasks));
     loadTasks();
 }
 
 function loadTasks() {
+    const list = document.getElementById("taskList");
+    list.innerHTML = "";
 
-    const taskList =
-        document.getElementById("taskList");
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-    taskList.innerHTML = "";
-
-    let tasks =
-        JSON.parse(
-            localStorage.getItem("tasks")
-        ) || [];
-
-    tasks.forEach((task, index) => {
-
-        const li =
-            document.createElement("li");
+    tasks.forEach((task, i) => {
+        const li = document.createElement("li");
 
         li.innerHTML = `
             ${task}
-            <button
-            onclick="deleteTask(${index})"
-            style="float:right;">
-                Delete
-            </button>
+            <button onclick="deleteTask(${i})">X</button>
         `;
 
-        taskList.appendChild(li);
+        list.appendChild(li);
     });
 }
 
 // ------------------------------
-// Notes
+// NOTES SYSTEM
 // ------------------------------
 
 function saveNotes() {
-
-    const notes =
-        document.getElementById("notesArea").value;
-
-    localStorage.setItem(
-        "notes",
-        notes
-    );
-
-    alert("Notes Saved!");
+    const notes = document.getElementById("notesArea").value;
+    localStorage.setItem("notes", notes);
 }
 
 function loadNotes() {
-
-    const notes =
+    document.getElementById("notesArea").value =
         localStorage.getItem("notes") || "";
-
-    document.getElementById("notesArea")
-        .value = notes;
 }
 
 // ------------------------------
-// Exam Countdown
+// EXAM COUNTDOWN
 // ------------------------------
 
 function saveExamDate() {
-
-    const date =
-        document.getElementById("examDate").value;
-
-    localStorage.setItem(
-        "examDate",
-        date
-    );
-
+    const date = document.getElementById("examDate").value;
+    localStorage.setItem("examDate", date);
     updateCountdown();
 }
 
 function updateCountdown() {
+    const date = localStorage.getItem("examDate");
 
-    const savedDate =
-        localStorage.getItem("examDate");
+    if (!date) return;
 
-    if (!savedDate) return;
+    const diff =
+        new Date(date) - new Date();
 
-    const examDate =
-        new Date(savedDate);
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
 
-    const today =
-        new Date();
-
-    const difference =
-        examDate - today;
-
-    const days =
-        Math.ceil(
-            difference /
-            (1000 * 60 * 60 * 24)
-        );
-
-    if (days >= 0) {
-
-        document.getElementById("countdown")
-            .textContent =
-            days + " days remaining";
-
-    } else {
-
-        document.getElementById("countdown")
-            .textContent =
-            "Exam date passed";
-    }
+    document.getElementById("countdown").innerText =
+        days >= 0
+            ? days + " days left"
+            : "Exam passed";
 }
 
 // ------------------------------
-// Study Streak
+// STUDY STREAK
 // ------------------------------
 
 function updateStreak() {
+    const today = new Date().toDateString();
+    const last = localStorage.getItem("lastVisit");
 
-    const today =
-        new Date().toDateString();
+    let streak = parseInt(localStorage.getItem("streak")) || 0;
 
-    const lastVisit =
-        localStorage.getItem("lastVisit");
-
-    let streak =
-        Number(
-            localStorage.getItem("streak")
-        ) || 0;
-
-    if (lastVisit !== today) {
-
+    if (last !== today) {
         streak++;
-
-        localStorage.setItem(
-            "streak",
-            streak
-        );
-
-        localStorage.setItem(
-            "lastVisit",
-            today
-        );
+        localStorage.setItem("streak", streak);
+        localStorage.setItem("lastVisit", today);
     }
 
-    document.getElementById("streak")
-        .textContent =
+    document.getElementById("streak").innerText =
         streak + " Days";
 }
 
 // ------------------------------
-// Pomodoro Timer
+// POMODORO TIMER
 // ------------------------------
 
 let timer;
-let totalSeconds = 1500;
+let timeLeft = 1500;
 
 function updateTimerDisplay() {
+    let m = Math.floor(timeLeft / 60);
+    let s = timeLeft % 60;
 
-    const minutes =
-        Math.floor(totalSeconds / 60);
-
-    const seconds =
-        totalSeconds % 60;
-
-    document.getElementById(
-        "timerDisplay"
-    ).textContent =
-        String(minutes).padStart(2, "0")
-        + ":" +
-        String(seconds).padStart(2, "0");
+    document.getElementById("timerDisplay").innerText =
+        `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
 }
 
 function startTimer() {
-
     clearInterval(timer);
 
     timer = setInterval(() => {
-
-        totalSeconds--;
+        timeLeft--;
 
         updateTimerDisplay();
 
-        if (totalSeconds <= 0) {
-
+        if (timeLeft <= 0) {
             clearInterval(timer);
-
-            alert(
-                "Pomodoro Session Complete!"
-            );
+            alert("Pomodoro complete!");
         }
-
     }, 1000);
 }
 
 function resetTimer() {
-
     clearInterval(timer);
-
-    totalSeconds = 1500;
-
+    timeLeft = 1500;
     updateTimerDisplay();
 }
 
 // ------------------------------
-// Videos
+// VIDEO SYSTEM (NEW SMART VERSION)
 // ------------------------------
 
+let videosData = [];
+
 async function loadVideo() {
-
     try {
-
-        const response =
-            await fetch("videos.json");
-
-        const videos =
-            await response.json();
+        const res = await fetch("videos.json");
+        videosData = await res.json();
 
         const allVideos = [];
 
-        Object.keys(videos).forEach(subject => {
-
-            videos[subject].forEach(video => {
-
-                allVideos.push(video);
-            });
+        Object.values(videosData).forEach(subject => {
+            subject.forEach(v => allVideos.push(v));
         });
 
-        if (allVideos.length === 0) return;
+        const todayIndex = new Date().getDate() % allVideos.length;
 
-        const today =
-            new Date().getDate();
+        const selected = allVideos[todayIndex];
 
-        const selected =
-            allVideos[
-                today % allVideos.length
-            ];
+        document.getElementById("videoTitle").innerText =
+            selected.title + " (" + selected.teacher + ")";
 
-        document.getElementById(
-            "videoTitle"
-        ).textContent =
-            selected.title;
+        document.getElementById("videoLink").onclick = () => {
+            const url =
+                "https://www.youtube.com/results?search_query=" +
+                encodeURIComponent(selected.query);
 
-        document.getElementById(
-            "videoLink"
-        ).href =
-            selected.url;
+            window.open(url, "_blank");
+        };
 
-    } catch (error) {
-
-        console.log(
-            "videos.json not found"
-        );
+    } catch (e) {
+        console.log("videos.json not found");
     }
 }
 
 // ------------------------------
-// Initial Load
+// INIT
 // ------------------------------
 
 window.onload = () => {
-
     loadGoal();
-
     loadTasks();
-
     loadNotes();
-
     updateCountdown();
-
     updateStreak();
-
     updateTimerDisplay();
-
     loadVideo();
 };
