@@ -1,1 +1,86 @@
+{
+  "Mathematics": [
+    {
+      "title": "Real Numbers One Shot",
+      "teacher": "Shobhit Nirwan",
+      "query": "Real Numbers Class 10 One Shot Shobhit Nirwan"
+    },
+    {
+      "title": "Polynomials One Shot",
+      "teacher": "Shobhit Nirwan",
+      "query": "Polynomials Class 10 One Shot Shobhit Nirwan"
+    },
+    {
+      "title": "Quadratic Equations One Shot",
+      "teacher": "Shobhit Nirwan",
+      "query": "Quadratic Equations Class 10 One Shot Shobhit Nirwan"
+    },
+    {
+      "title": "Triangles One Shot",
+      "teacher": "Shobhit Nirwan",
+      "query": "Triangles Class 10 One Shot Shobhit Nirwan"
+    }
+  ],
 
+  "Science": [
+    {
+      "title": "Chemical Reactions",
+      "teacher": "Prashant Kirad",
+      "query": "Chemical Reactions and Equations Class 10 One Shot Prashant Kirad"
+    },
+    {
+      "title": "Life Processes",
+      "teacher": "Prashant Kirad",
+      "query": "Life Processes Class 10 One Shot Prashant Kirad"
+    },
+    {
+      "title": "Electricity",
+      "teacher": "Prashant Kirad",
+      "query": "Electricity Class 10 One Shot Prashant Kirad"
+    }
+  ],
+
+  "Social Science": [
+    {
+      "title": "Nationalism in Europe",
+      "teacher": "Digraj Singh Rajput",
+      "query": "Nationalism in Europe Class 10 One Shot Digraj Singh Rajput"
+    },
+    {
+      "title": "Nationalism in India",
+      "teacher": "Digraj Singh Rajput",
+      "query": "Nationalism in India Class 10 One Shot Digraj Singh Rajput"
+    },
+    {
+      "title": "Resources and Development",
+      "teacher": "Magnet Brains",
+      "query": "Resources and Development Class 10 Magnet Brains One Shot"
+    }
+  ],
+
+  "English": [
+    {
+      "title": "A Letter to God",
+      "teacher": "Magnet Brains",
+      "query": "A Letter to God Class 10 One Shot Magnet Brains"
+    },
+    {
+      "title": "Nelson Mandela",
+      "teacher": "Magnet Brains",
+      "query": "Nelson Mandela Class 10 One Shot Magnet Brains"
+    }
+  ],
+
+  "Hindi": [
+    {
+      "title": "Surdas",
+      "teacher": "Magnet Brains",
+      "query": "Surdas Class 10 Hindi One Shot Magnet Brains"
+    },
+    {
+      "title": "Neta Ji Ka Chashma",
+      "teacher": "Magnet Brains",
+      "query": "Neta Ji Ka Chashma Class 10 Hindi Magnet Brains"
+    }
+  ]
+}
