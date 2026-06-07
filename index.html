@@ -1,1 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyPilot - Class 10 Study Manager</title>
 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>📚 StudyPilot</h1>
+    <p>Your Personal Class 10 Study Manager</p>
+</header>
+
+<nav>
+    <button onclick="showSection('dashboard')">Dashboard</button>
+    <button onclick="showSection('tasks')">Tasks</button>
+    <button onclick="showSection('notes')">Notes</button>
+    <button onclick="showSection('videos')">Videos</button>
+    <button onclick="showSection('timer')">Timer</button>
+</nav>
+
+<main>
+
+<section id="dashboard" class="section active">
+
+    <div class="card">
+        <h2>🎯 Daily Goal</h2>
+
+        <input
+            type="text"
+            id="goalInput"
+            placeholder="Enter today's goal">
+
+        <button onclick="saveGoal()">
+            Save Goal
+        </button>
+
+        <p id="goalDisplay"></p>
+    </div>
+
+    <div class="card">
+        <h2>🔥 Study Streak</h2>
+        <h1 id="streak">0 Days</h1>
+    </div>
+
+    <div class="card">
+        <h2>📅 Exam Countdown</h2>
+
+        <input
+            type="date"
+            id="examDate">
+
+        <button onclick="saveExamDate()">
+            Save Exam Date
+        </button>
+
+        <p id="countdown"></p>
+    </div>
+
+</section>
+
+<section id="tasks" class="section">
+
+    <div class="card">
+
+        <h2>✅ Homework & Tasks</h2>
+
+        <input
+            type="text"
+            id="taskInput"
+            placeholder="Add task">
+
+        <button onclick="addTask()">
+            Add Task
+        </button>
+
+        <ul id="taskList"></ul>
+
+    </div>
+
+</section>
+
+<section id="notes" class="section">
+
+    <div class="card">
+
+        <h2>📝 Notes</h2>
+
+        <textarea
+            id="notesArea"
+            rows="10"
+            placeholder="Write your notes here..."></textarea>
+
+        <button onclick="saveNotes()">
+            Save Notes
+        </button>
+
+    </div>
+
+</section>
+
+<section id="videos" class="section">
+
+    <div class="card">
+
+        <h2>🎥 Recommended One-Shot</h2>
+
+        <h3 id="videoTitle"></h3>
+
+        <a
+            id="videoLink"
+            target="_blank">
+            Watch Video
+        </a>
+
+    </div>
+
+</section>
+
+<section id="timer" class="section">
+
+    <div class="card">
+
+        <h2>⏰ Pomodoro Timer</h2>
+
+        <h1 id="timerDisplay">
+            25:00
+        </h1>
+
+        <button onclick="startTimer()">
+            Start
+        </button>
+
+        <button onclick="resetTimer()">
+            Reset
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    <p>StudyPilot © 2026</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
