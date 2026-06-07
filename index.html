@@ -1,156 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2563eb">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>StudyPilot - Class 10 Study Manager</title>
 
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header>
-    <h1>📚 StudyPilot</h1>
-    <p>Your Personal Class 10 Study Manager</p>
-</header>
+    <!-- HEADER -->
+    <header>
+        <h1>📚 StudyPilot</h1>
+        <p>Your Personal Class 10 Study Manager</p>
+    </header>
 
-<nav>
-    <button onclick="showSection('dashboard')">Dashboard</button>
-    <button onclick="showSection('tasks')">Tasks</button>
-    <button onclick="showSection('notes')">Notes</button>
-    <button onclick="showSection('videos')">Videos</button>
-    <button onclick="showSection('timer')">Timer</button>
-</nav>
+    <!-- NAVIGATION -->
+    <nav>
+        <button onclick="showSection('dashboard')">Dashboard</button>
+        <button onclick="showSection('tasks')">Tasks</button>
+        <button onclick="showSection('notes')">Notes</button>
+        <button onclick="showSection('videos')">Videos</button>
+        <button onclick="showSection('timer')">Timer</button>
+    </nav>
 
-<main>
+    <!-- MAIN CONTENT -->
+    <main>
 
-<section id="dashboard" class="section active">
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="section active">
 
-    <div class="card">
-        <h2>🎯 Daily Goal</h2>
+            <div class="card">
+                <h2>🎯 Daily Goal</h2>
+                <input type="text" id="goalInput" placeholder="Enter your goal">
+                <button onclick="saveGoal()">Save Goal</button>
+                <p id="goalDisplay">No goal set</p>
+            </div>
 
-        <input
-            type="text"
-            id="goalInput"
-            placeholder="Enter today's goal">
+            <div class="card">
+                <h2>📅 Exam Countdown</h2>
+                <input type="date" id="examDate">
+                <button onclick="saveExamDate()">Save Date</button>
+                <p id="countdown"></p>
+            </div>
 
-        <button onclick="saveGoal()">
-            Save Goal
-        </button>
+            <div class="card">
+                <h2>🔥 Study Streak</h2>
+                <p id="streak">0 Days</p>
+            </div>
 
-        <p id="goalDisplay"></p>
-    </div>
+        </section>
 
-    <div class="card">
-        <h2>🔥 Study Streak</h2>
-        <h1 id="streak">0 Days</h1>
-    </div>
+        <!-- TASKS -->
+        <section id="tasks" class="section">
 
-    <div class="card">
-        <h2>📅 Exam Countdown</h2>
+            <div class="card">
+                <h2>📝 Tasks</h2>
+                <input type="text" id="taskInput" placeholder="Add a task">
+                <button onclick="addTask()">Add Task</button>
 
-        <input
-            type="date"
-            id="examDate">
+                <ul id="taskList"></ul>
+            </div>
 
-        <button onclick="saveExamDate()">
-            Save Exam Date
-        </button>
+        </section>
 
-        <p id="countdown"></p>
-    </div>
+        <!-- NOTES -->
+        <section id="notes" class="section">
 
-</section>
+            <div class="card">
+                <h2>📒 Notes</h2>
+                <textarea id="notesArea" rows="10" placeholder="Write your notes..."></textarea>
+                <button onclick="saveNotes()">Save Notes</button>
+            </div>
 
-<section id="tasks" class="section">
+        </section>
 
-    <div class="card">
+        <!-- VIDEOS -->
+        <section id="videos" class="section">
 
-        <h2>✅ Homework & Tasks</h2>
+            <div class="card">
+                <h2>🎥 Daily One-Shot Video</h2>
 
-        <input
-            type="text"
-            id="taskInput"
-            placeholder="Add task">
+                <h3 id="videoTitle">Loading...</h3>
 
-        <button onclick="addTask()">
-            Add Task
-        </button>
+                <button onclick="loadVideo()">Refresh Video</button>
+                <br><br>
 
-        <ul id="taskList"></ul>
+                <a id="videoLink" target="_blank">
+                    ▶ Watch Video
+                </a>
+            </div>
 
-    </div>
+        </section>
 
-</section>
+        <!-- TIMER -->
+        <section id="timer" class="section">
 
-<section id="notes" class="section">
+            <div class="card">
+                <h2>⏳ Pomodoro Timer</h2>
 
-    <div class="card">
+                <div id="timerDisplay">25:00</div>
 
-        <h2>📝 Notes</h2>
+                <button onclick="startTimer()">Start</button>
+                <button onclick="resetTimer()">Reset</button>
+            </div>
 
-        <textarea
-            id="notesArea"
-            rows="10"
-            placeholder="Write your notes here..."></textarea>
+        </section>
 
-        <button onclick="saveNotes()">
-            Save Notes
-        </button>
+    </main>
 
-    </div>
+    <!-- FOOTER -->
+    <footer>
+        <p>Made by CyberBoy877 🚀</p>
+    </footer>
 
-</section>
-
-<section id="videos" class="section">
-
-    <div class="card">
-
-        <h2>🎥 Recommended One-Shot</h2>
-
-        <h3 id="videoTitle"></h3>
-
-        <a
-            id="videoLink"
-            target="_blank">
-            Watch Video
-        </a>
-
-    </div>
-
-</section>
-
-<section id="timer" class="section">
-
-    <div class="card">
-
-        <h2>⏰ Pomodoro Timer</h2>
-
-        <h1 id="timerDisplay">
-            25:00
-        </h1>
-
-        <button onclick="startTimer()">
-            Start
-        </button>
-
-        <button onclick="resetTimer()">
-            Reset
-        </button>
-
-    </div>
-
-</section>
-
-</main>
-
-<footer>
-    <p>StudyPilot © 2026</p>
-</footer>
-
-<script src="script.js"></script>
+    <!-- SCRIPT -->
+    <script src="script.js"></script>
 
 </body>
 </html>
